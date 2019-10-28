@@ -35,6 +35,11 @@ int main(int argc, char* argv[]){
 			salesPerProduct[product] += sales[city][product];
 		}
 	}
+	for (int city = 0; city < CITY_COUNT; city++){
+		salesPerCity[city] = 0;
+		for (int product = 0; product < PRODUCT_COUNT; product++)
+			salesPerCity[city] += sales[city][product];
+	}
 	cout << setw(12) << " ";
 	for (int product = 0; product < PRODUCT_COUNT; product++)
 		cout << setw(12) << PRODUCTS[product];
@@ -45,14 +50,14 @@ int main(int argc, char* argv[]){
 		for (int product = 0; product < PRODUCT_COUNT; product++){
 			cout << setw(12) << setprecision(2) << fixed << sales[city][product];
 		}
-		cout << endl;
+		cout << setw(15) << salesPerCity[city] << endl;
 	}
 
-	cout << endl << endl;
-	cout << "Total sales per Product ===== " << endl;
+	cout << setw(12) << " ";
 	for (int product = 0; product < PRODUCT_COUNT; product++){
-		cout << PRODUCTS[product] << ": " << salesPerProduct[product] << endl;
+		cout << setw(12) << salesPerProduct[product];
 	}
+	cout << endl;
 
 	return 0;
 }
